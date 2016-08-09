@@ -1,0 +1,16 @@
+h3 {
+	margin-left: 5%;
+} 
+
+.box {
+	display: block;
+	border-style: solid;
+	width: 12%;
+	background-color: lightgrey;
+	margin-left: 6%;
+}
+
+div {
+	margin: 10px;
+}
+
