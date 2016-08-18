@@ -9,20 +9,25 @@ If the temperature is less than 32F/0C the color of the converted temperature sh
 For any other temperature, the color should be green.*/
 
 var execute = document.getElementById("userSubmit");
-var clearButton = document.getElementById("clearbut");
+var clearButton = document.getElementById("clearBut");
 var enterText = document.getElementById("userInput");
 var output = document.getElementById("result");
-
-execute.addEventListener("click", toCelsius);
-execute.addEventListener("click", toFahrenheit);
+document.addEventListener("keypress", determineConverter);
+execute.addEventListener("click", determineConverter);
 clearButton.addEventListener("click", clear);
 
 //(x - 32) / 1.8 = celsius temp
 function toCelsius () {
 	var enterFahr = enterText.value;
-	var fahrToCels = ((enterFahr - 32)*5)/9;
+	var fahrToCels = (((enterFahr - 32)*5)/9);
 	output.value = fahrToCels;
-	console.log(fahrToCels);
+	if(fahrToCels > 32){
+	output.style.color = "red";
+    } else if (fahrToCels <= 0) {
+    	output.style.color = "blue";
+    } else {
+    	output.style.color = "green";
+    }
 }
 
 //x * 1.8 + 32 = fahrenheit temp
@@ -30,15 +35,42 @@ function toFahrenheit () {
 	var enterCels = enterText.value;
 	var celsToFahr = ((enterCels * 9)/5)+32;
 	output.value = celsToFahr;
-	console.log(celsToFahr);
+	if(celsToFahr < 32){
+		output.style.color = "blue";
+	} else if (celsToFahr <= 0) {
+    	output.style.color = "blue";
+    } else {
+    	output.style.color = "green";
+    }
+	
 }
 
-function clear() {
-	document.getElementById("userInput").value = "";
-	document.getElementById("result").innerHTML = "";
-	console.log("clearbutton" clicked")
+
+
+function determineConverter (clickEvent) {
+	if (document.getElementById("Fahr").checked) {
+		toFahrenheit();
+	} else if (document.getElementById("Cels").checked) {
+		toCelsius();
+	}
 }
 
+function enterKeyPressed(keypress){
+ if (keypress.which === 13) {
+   determineConverter();
+ }
+}
+
+
+
+
+function clear(){
+ 
+ 	document.getElementById("userInput").value = "";
+ 	document.getElementById("result").value = "";
+ 	//console.log(clearButton, clicked);
+ }
+ //clear()
 
 
 
