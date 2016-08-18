@@ -2,10 +2,10 @@ h3 {
 	margin-left: 5%;
 } 
 
-.box {
+#box {
 	display: block;
 	border-style: solid;
-	width: 12%;
+	width: 13%;
 	background-color: lightgrey;
 	margin-left: 6%;
 }
